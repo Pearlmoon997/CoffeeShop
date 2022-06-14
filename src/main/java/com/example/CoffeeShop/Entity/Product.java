@@ -1,5 +1,6 @@
 package com.example.CoffeeShop.Entity;
 
+import com.example.CoffeeShop.DTO.ProductDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,7 +18,7 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Product_ID;
+    private Long id;
 
     @Column
     private String name;
@@ -27,4 +28,5 @@ public class Product {
 
     @Column
     private String category;
+
 }

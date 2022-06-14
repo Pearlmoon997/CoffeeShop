@@ -1,13 +1,14 @@
 package com.example.CoffeeShop.API;
 
+import com.example.CoffeeShop.DTO.ProductDto;
 import com.example.CoffeeShop.Entity.Product;
 import com.example.CoffeeShop.Repository.ProductRepository;
 import com.example.CoffeeShop.Service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,5 +27,14 @@ public class ProductAPIController {
     @GetMapping("/api/products/{category}")
     public List<Product> showByCategory(@PathVariable String category) {
         return productService.findByCategory(category);
+    }
+
+    @PostMapping("/api/products")
+    public ResponseEntity<Product> create(@RequestBody ProductDto dto) {
+        Product created = productService.create(dto);
+        return (created != null) ?
+                ResponseEntity.status(HttpStatus.OK).body(created) :
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+
     }
 }
