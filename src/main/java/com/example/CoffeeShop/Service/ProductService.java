@@ -17,14 +17,17 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
+    //전체 상품 조회
     public List<Product> list() {
         return productRepository.findAll();
     }
 
+    //카테고리 별 상품 조회
     public List<Product> findByCategory(String category) {
         return productRepository.findByCategory(category);
     }
 
+    //상품 등록
     public Product create(ProductDto dto) {
         Product product = dto.toEntity();
         if (product.getId() != null) {
