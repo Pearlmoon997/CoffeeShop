@@ -6,6 +6,7 @@ import com.example.CoffeeShop.Service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -20,5 +21,10 @@ public class ProductAPIController {
     @GetMapping("/api/products")
     public List<Product> list() {
         return productService.list();
+    }
+
+    @GetMapping("/api/products/{category}")
+    public List<Product> showByCategory(@PathVariable String category) {
+        return productService.findByCategory(category);
     }
 }
