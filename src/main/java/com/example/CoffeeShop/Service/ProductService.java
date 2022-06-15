@@ -28,6 +28,7 @@ public class ProductService {
     }
 
     //상품 등록
+    @Transactional
     public Product create(ProductDto dto) {
         Product product = dto.toEntity();
         if (product.getId() != null) {
@@ -35,5 +36,31 @@ public class ProductService {
         }
 
         return productRepository.save(product);
+    }
+
+    @Transactional
+    public Product update(Long id, ProductDto dto) {
+        Product product = dto.toEntity();
+        log.info("id: {}, Product: {}", id, product.toString());
+
+        Product target = productRepository.findById(id).orElse(null);
+        if (target == null || id != product.getId()) {
+            log.info("잘못된 요청");
+            return null;
+        }
+        target.patch(product);
+        Product updated = productRepository.save(target);
+        return updated;
+    }
+
+    public Product delete(Long id) {
+        Product target = productRepository.findById(id).orElse(null);
+
+        if (target == null) {
+            return null;
+        }
+        productRepository.delete(target);
+
+        return target;
     }
 }

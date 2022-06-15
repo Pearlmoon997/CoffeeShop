@@ -24,9 +24,20 @@ public class Product {
     private String name;
 
     @Column
-    private int price;
+    private Integer price;
 
     @Column
     private String category;
 
+    public void patch(Product product) {
+        if (product.name != null) {
+            this.name = product.name;
+        }
+        if (product.category != null) {
+            this.category = product.category;
+        }
+        if (product.price != null) {
+            this.price = product.price;
+        }
+    }
 }

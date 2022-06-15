@@ -38,6 +38,23 @@ public class ProductAPIController {
         return (created != null) ?
                 ResponseEntity.status(HttpStatus.OK).body(created) :
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
 
+    //상품 수정
+    @PatchMapping("/api/products/{id}")
+    public ResponseEntity<Product> update(@PathVariable Long id, @RequestBody ProductDto dto) {
+        Product updated = productService.update(id, dto);
+        return (updated != null) ?
+                ResponseEntity.status(HttpStatus.OK).body(updated) :
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
+    //상품 삭제
+    @DeleteMapping("/api/products/{id}")
+    public ResponseEntity<Product> delete(@PathVariable Long id) {
+        Product deleted = productService.delete(id);
+        return (deleted != null) ?
+                ResponseEntity.status(HttpStatus.OK).build() :
+                ResponseEntity.status(HttpStatus.BAD_REQUEST). build();
     }
 }
