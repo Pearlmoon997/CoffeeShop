@@ -53,6 +53,7 @@ public class ProductService {
         return updated;
     }
 
+    @Transactional
     public Product delete(Long id) {
         Product target = productRepository.findById(id).orElse(null);
 
