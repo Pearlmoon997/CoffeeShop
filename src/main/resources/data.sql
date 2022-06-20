@@ -9,3 +9,8 @@ INSERT INTO product(id, name, price, category) VALUES (5, '우유', 2000, 'Non �
 INSERT INTO member(id, user_name, name, age, phone_num, password) VALUES (1,'aaa', '김일번', 26, '01012345678', 'a123');
 INSERT INTO member(id, user_name, name, age, phone_num, password) VALUES (2, 'bbb', '문이번', 23, '01043218765', 'b123');
 INSERT INTO member(id, user_name, name, age, phone_num, password) VALUES (3, 'bbb', '박삼번', 29, '01056781234', 'c123');
+
+--order 더미데이터
+INSERT INTO orders(id, member_id, order_date) VALUES (1, 1, current_timestamp);
+INSERT INTO orders(id, member_id, order_date) VALUES (2, 2, current_timestamp);
+INSERT INTO orders(id, member_id, order_date) VALUES (3, 3, current_timestamp);
