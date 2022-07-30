@@ -14,3 +14,6 @@ INSERT INTO member(id, user_name, name, age, phone_num, password) VALUES (3, 'bb
 INSERT INTO orders(id, member_id, order_date) VALUES (1, 1, current_timestamp);
 INSERT INTO orders(id, member_id, order_date) VALUES (2, 2, current_timestamp);
 INSERT INTO orders(id, member_id, order_date) VALUES (3, 3, current_timestamp);
+
+--orderProduct 더미데이터
+INSERT INTO order_product(id, order_id, product_id, total) VALUES (1, 1, 1, 4000);
