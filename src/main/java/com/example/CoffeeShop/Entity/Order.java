@@ -34,9 +34,10 @@ public class Order extends BaseTimeEntity {
     public static Order createOrder(OrderDto dto, Member member) {
         if (dto.getId() != null) {
             throw new IllegalArgumentException("생성 실패, 주문에는 ID가 없어야 함.");
-        } if (dto.getMemberId() != member.getId()) {
-            throw new IllegalArgumentException("생성 실패, 회원의 ID가 다름");
         }
+//        if (dto.getMemberId() != member.getId()) {
+//            throw new IllegalArgumentException("생성 실패, 회원의 ID가 다름");
+//        }
         return new Order(
                 dto.getId(),
                 member,
