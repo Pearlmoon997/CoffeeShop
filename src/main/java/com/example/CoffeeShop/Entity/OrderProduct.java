@@ -1,5 +1,6 @@
 package com.example.CoffeeShop.Entity;
 
+import com.example.CoffeeShop.DTO.OrderProductDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,4 +31,12 @@ public class OrderProduct {
     @Column
     private int Total;
 
+    public static OrderProduct createOrderProduct(OrderProductDto dto, Order order, Product product) {
+        return new OrderProduct(
+                dto.getId(),
+                order,
+                product,
+                product.getPrice()
+        );
+    }
 }
