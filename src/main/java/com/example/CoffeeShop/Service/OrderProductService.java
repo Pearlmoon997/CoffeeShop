@@ -34,6 +34,7 @@ public class OrderProductService {
     }
 
     //주문 등록
+    @Transactional
     public OrderProductDto create(Long OrderId, Long ProductId, OrderProductDto dto) {
         Order order = orderRepository.findById(OrderId)
                 .orElseThrow(() -> new IllegalArgumentException("대상 주문이 없음"));
@@ -45,5 +46,18 @@ public class OrderProductService {
         OrderProduct created = orderProductRepository.save(orderProduct);
 
         return OrderProductDto.createOrderProductDto(created);
+    }
+
+    //삭제
+    @Transactional
+    public OrderProduct delete(Long id) {
+        OrderProduct target = orderProductRepository.findById(id).orElse(null);
+
+        if (target == null) {
+            return null;
+        }
+        orderProductRepository.delete(target);
+
+        return target;
     }
 }

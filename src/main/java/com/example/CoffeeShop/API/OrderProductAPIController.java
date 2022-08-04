@@ -31,4 +31,13 @@ public class OrderProductAPIController {
 
         return ResponseEntity.status(HttpStatus.OK).body(createdDto);
     }
+
+    //order_product 삭제
+    @DeleteMapping("/api/orderproducts/{id}")
+    public ResponseEntity<OrderProduct> delete(@PathVariable Long id) {
+        OrderProduct deleted = orderProductService.delete(id);
+        return (deleted != null) ?
+                ResponseEntity.status(HttpStatus.OK).build() :
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
 }
