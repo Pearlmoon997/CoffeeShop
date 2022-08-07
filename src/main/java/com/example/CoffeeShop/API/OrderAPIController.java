@@ -40,7 +40,7 @@ public class OrderAPIController {
     @DeleteMapping("/api/orders/{id}")
     public ResponseEntity<Order> delete(@PathVariable Long id) {
         Order deleted = orderService.delete(id);
-        return (deleted != null) ?
+        return deleted != null ?
                 ResponseEntity.status(HttpStatus.OK).build() :
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
