@@ -19,3 +19,8 @@ INSERT INTO orders(id, member_id, order_date) VALUES (3, 3, current_timestamp);
 INSERT INTO order_product(id, order_id, product_id, total) VALUES (1, 1, 1, 4000);
 INSERT INTO order_product(id, order_id, product_id, total) VALUES (2, 2, 3, 4800);
 INSERT INTO order_product(id, order_id, product_id, total) VALUES (3, 3, 5, 2000);
+
+--Store 더미데이터
+INSERT INTO store(id, name, location) VALUES (1, '기흥점', '용인');
+INSERT INTO store(id, name, location) VALUES (2, '둔전점', '용인');
+INSERT INTO store(id, name, location) VALUES (3, '강남점', '서울');
