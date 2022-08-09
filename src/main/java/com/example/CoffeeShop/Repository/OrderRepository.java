@@ -15,5 +15,8 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
             "(SELECT id FROM member WHERE phone_num = :PhoneNum);", nativeQuery = true)
     List<Order> findByPhoneNum(@Param("PhoneNum")String PhoneNum);
 
+    //지점 별 주문 조회
+    @Query(value = "SELECT * FROM orders WHERE store_id = (SELECT id FROM store WHERE name = :StoreName)", nativeQuery = true)
+    List<Order> listByStoreName(@Param("StoreName")String StoreName);
 
 }

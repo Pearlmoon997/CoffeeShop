@@ -19,12 +19,16 @@ public class OrderDto {
     @JsonProperty("member_id")
     private Long memberId;
 
+    @JsonProperty("store_id")
+    private Long storeId;
+
     private LocalDateTime orderDate;
 
     public static OrderDto createOrderDto(Order order) {
         return new OrderDto(
                 order.getId(),
                 order.getMember().getId(),
+                order.getStore().getId(),
                 order.getOrderDate()
         );
     }

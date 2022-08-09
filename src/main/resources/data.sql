@@ -10,17 +10,18 @@ INSERT INTO member(id, user_name, name, age, phone_num, password) VALUES (1,'aaa
 INSERT INTO member(id, user_name, name, age, phone_num, password) VALUES (2, 'bbb', '문이번', 23, '01043218765', 'b123');
 INSERT INTO member(id, user_name, name, age, phone_num, password) VALUES (3, 'bbb', '박삼번', 29, '01056781234', 'c123');
 
+--Store 더미데이터
+INSERT INTO store(id, name, location) VALUES (1, '기흥점', '용인');
+INSERT INTO store(id, name, location) VALUES (2, '둔전점', '용인');
+INSERT INTO store(id, name, location) VALUES (3, '강남점', '서울');
+
 --order 더미데이터
-INSERT INTO orders(id, member_id, order_date) VALUES (1, 1, current_timestamp);
-INSERT INTO orders(id, member_id, order_date) VALUES (2, 2, current_timestamp);
-INSERT INTO orders(id, member_id, order_date) VALUES (3, 3, current_timestamp);
+INSERT INTO orders(id, member_id, store_id, order_date) VALUES (1, 1, 1, current_timestamp);
+INSERT INTO orders(id, member_id, store_id, order_date) VALUES (2, 2, 2, current_timestamp);
+INSERT INTO orders(id, member_id, store_id, order_date) VALUES (3, 3, 3, current_timestamp);
 
 --orderProduct 더미데이터
 INSERT INTO order_product(id, order_id, product_id, total) VALUES (1, 1, 1, 4000);
 INSERT INTO order_product(id, order_id, product_id, total) VALUES (2, 2, 3, 4800);
 INSERT INTO order_product(id, order_id, product_id, total) VALUES (3, 3, 5, 2000);
 
---Store 더미데이터
-INSERT INTO store(id, name, location) VALUES (1, '기흥점', '용인');
-INSERT INTO store(id, name, location) VALUES (2, '둔전점', '용인');
-INSERT INTO store(id, name, location) VALUES (3, '강남점', '서울');
