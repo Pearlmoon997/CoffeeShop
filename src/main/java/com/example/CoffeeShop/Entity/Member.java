@@ -19,7 +19,7 @@ public class Member {
     private Long id;
 
     @Column
-    private String userName;        //로그인 ID
+    private String userID;        //로그인 ID
 
     @Column
     private String name;
@@ -34,8 +34,8 @@ public class Member {
     private String password;
 
     public void patch(Member member) {
-        if (member.userName != null) {
-            this.userName = member.userName;
+        if (member.userID != null) {
+            this.userID = member.userID;
         }
         if (member.name != null) {
             this.name = member.name;
