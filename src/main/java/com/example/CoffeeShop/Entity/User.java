@@ -22,10 +22,10 @@ public class User {
     private String email;        //로그인 ID
 
     @Column
-    private String userName;
+    private String name;
 
     @Column
-    private Integer age;
+    private String age;
 
     @Column
     private String phoneNum;
@@ -42,8 +42,8 @@ public class User {
         if (user.email != null) {
             this.email = user.email;
         }
-        if (user.userName != null) {
-            this.userName = user.userName;
+        if (user.name != null) {
+            this.name = user.name;
         }
         if (user.age != null) {
             this.age = user.age;
@@ -61,7 +61,7 @@ public class User {
     }
 
     public Object update(String name) {
-        this.userName = name;
+        this.name = name;
 
         return this;
     }

@@ -45,6 +45,10 @@
                     <button class="btn btn-light"><a href="/signIn" style="color: white; text-decoration-line: none; color: gray">로그인</a></button>
                     <button class="btn btn-light"><a href="/signUp" style="color: white; text-decoration-line: none; color: gray">회원가입</a></button>
                 {{/userName}}
+                {{#userName}}
+                    {{userName}}
+                    <a href="/logout" class="btn btn-light active" style="color: white; text-decoration-line: none; color: gray">LogOut</a>
+                {{/userName}}
 
             </div>
         </div>

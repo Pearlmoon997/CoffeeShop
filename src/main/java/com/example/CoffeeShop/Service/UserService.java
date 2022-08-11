@@ -25,11 +25,11 @@ public class UserService {
     //회원 등록
     @Transactional
     public User create(UserDto dto) {
-        User member = dto.toEntity();
-        if (member.getId() != null) {
+        User user = dto.toEntity();
+        if (user.getId() != null) {
             return null;
         }
-        return userRepository.save(member);
+        return userRepository.save(user);
     }
 
     //회원 수정

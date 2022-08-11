@@ -15,7 +15,6 @@ import javax.servlet.http.HttpSession;
 @Slf4j
 public class MainController {
 
-    private final HttpSession httpSession;
 
     //메인 페이지
     @GetMapping("/")
@@ -26,6 +25,7 @@ public class MainController {
         if (user != null) {
             model.addAttribute("userEmail", user.getEmail());
         }
+
         return "coffeeShop/main";
     }
 
