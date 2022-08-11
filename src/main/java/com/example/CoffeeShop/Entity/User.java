@@ -19,7 +19,7 @@ public class User {
     private Long id;
 
     @Column
-    private String email;        //로그인 ID
+    private String email;        //네이버 토큰 값 ID
 
     @Column
     private String name;
@@ -29,9 +29,6 @@ public class User {
 
     @Column
     private String phoneNum;
-
-    @Column
-    private String password;
 
     //역할 추가
     @Enumerated(EnumType.STRING)
@@ -51,9 +48,7 @@ public class User {
         if (user.phoneNum != null) {
             this.phoneNum = user.phoneNum;
         }
-        if (user.password != null) {
-            this.password = user.password;
-        }
+
     }
 
     public String getRoleKey() {

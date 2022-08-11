@@ -18,10 +18,9 @@ public class UserDto {
     private String name;
     private String age;
     private String phoneNum;
-    private String password;
     private Role role;
 
     public User toEntity() {
-        return new User(id, email, name, age, phoneNum, password, role);
+        return new User(id, email, name, age, phoneNum, role);
     }
 }

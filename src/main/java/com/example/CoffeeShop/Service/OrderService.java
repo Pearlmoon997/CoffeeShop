@@ -23,7 +23,7 @@ public class OrderService {
     private OrderRepository orderRepository;
 
     @Autowired
-    private UserRepository memberRepository;
+    private UserRepository userRepository;
 
     @Autowired
     private OrderProductRepository orderProductRepository;
@@ -48,14 +48,14 @@ public class OrderService {
 
     //주문 생성
     @Transactional
-    public OrderDto create(Long memberId, Long storeId, OrderDto dto) {
-        User member = memberRepository.findById(memberId)
+    public OrderDto create(Long userId, Long storeId, OrderDto dto) {
+        User user = userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("생성 실패, 대상 회원이 없음"));
 
         Store store = storeRepository.findById(storeId)
                 .orElseThrow(() -> new IllegalArgumentException("생성 실패, 대상 지점이 없음"));
 
-        Order order = Order.createOrder(dto, member, store);
+        Order order = Order.createOrder(dto, user, store);
 
         Order created = orderRepository.save(order);
 
