@@ -1,11 +1,10 @@
 package com.example.CoffeeShop.Service;
 
 import com.example.CoffeeShop.DTO.OrderDto;
-import com.example.CoffeeShop.Entity.Member;
+import com.example.CoffeeShop.Entity.User;
 import com.example.CoffeeShop.Entity.Order;
-import com.example.CoffeeShop.Entity.OrderProduct;
 import com.example.CoffeeShop.Entity.Store;
-import com.example.CoffeeShop.Repository.MemberRepository;
+import com.example.CoffeeShop.Repository.UserRepository;
 import com.example.CoffeeShop.Repository.OrderProductRepository;
 import com.example.CoffeeShop.Repository.OrderRepository;
 import com.example.CoffeeShop.Repository.StoreRepository;
@@ -24,7 +23,7 @@ public class OrderService {
     private OrderRepository orderRepository;
 
     @Autowired
-    private MemberRepository memberRepository;
+    private UserRepository memberRepository;
 
     @Autowired
     private OrderProductRepository orderProductRepository;
@@ -50,7 +49,7 @@ public class OrderService {
     //주문 생성
     @Transactional
     public OrderDto create(Long memberId, Long storeId, OrderDto dto) {
-        Member member = memberRepository.findById(memberId)
+        User member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new IllegalArgumentException("생성 실패, 대상 회원이 없음"));
 
         Store store = storeRepository.findById(storeId)

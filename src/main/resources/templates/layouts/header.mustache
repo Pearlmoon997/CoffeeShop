@@ -33,8 +33,19 @@
             </ul>
             <!-- 로그인, 회원가입 -->
             <div align="right">
-                <button class="btn btn-light"><a href="/login" style="color: white; text-decoration-line: none; color: gray">로그인</a></button>
-                <button class="btn btn-light"><a href="/signUp" style="color: white; text-decoration-line: none; color: gray">회원가입</a></button>
+                {{#userName}}
+                {{#userEmail}}
+                   {{userName}}님
+                    e-mail: {{userEmail}}
+                    <a href="/logout" class="btn btn-light active" style="color: white; text-decoration-line: none; color: gray">LogOut</a>
+                    <button class="btn btn-light"><a href="/myPage" style="color: white; text-decoration-line: none; color: gray">마이페이지</a></button>
+                {{/userEmail}}
+                {{/userName}}
+                {{^userName}}
+                    <button class="btn btn-light"><a href="/signIn" style="color: white; text-decoration-line: none; color: gray">로그인</a></button>
+                    <button class="btn btn-light"><a href="/signUp" style="color: white; text-decoration-line: none; color: gray">회원가입</a></button>
+                {{/userName}}
+
             </div>
         </div>
     </div>

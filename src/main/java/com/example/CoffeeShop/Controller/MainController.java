@@ -1,26 +1,38 @@
 package com.example.CoffeeShop.Controller;
 
-import com.example.CoffeeShop.Entity.Member;
-import com.example.CoffeeShop.Service.MemberService;
+import com.example.CoffeeShop.config.auth.DTO.SessionUser;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
+@RequiredArgsConstructor
 @Slf4j
 public class MainController {
 
+    private final HttpSession httpSession;
+
     //메인 페이지
-    @GetMapping("/main")
-    public String main() {
+    @GetMapping("/")
+    public String main(Model model) {
+        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        if (user != null) {
+            model.addAttribute("userName", user.getName());
+        }
+        if (user != null) {
+            model.addAttribute("userEmail", user.getEmail());
+        }
         return "coffeeShop/main";
     }
 
     //로그인 페이지
-    @GetMapping("/login")
+    @GetMapping("/signIn")
     public String login() {
+
         return "coffeeShop/login";
     }
 

@@ -16,8 +16,8 @@ import java.time.LocalDateTime;
 public class OrderDto {
     private Long id;
 
-    @JsonProperty("member_id")
-    private Long memberId;
+    @JsonProperty("user_id")
+    private Long userId;
 
     @JsonProperty("store_id")
     private Long storeId;
@@ -27,7 +27,7 @@ public class OrderDto {
     public static OrderDto createOrderDto(Order order) {
         return new OrderDto(
                 order.getId(),
-                order.getMember().getId(),
+                order.getUser().getId(),
                 order.getStore().getId(),
                 order.getOrderDate()
         );

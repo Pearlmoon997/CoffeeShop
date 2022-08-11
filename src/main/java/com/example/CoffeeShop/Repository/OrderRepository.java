@@ -11,8 +11,8 @@ import java.util.List;
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
     //회원 전화번호 별 주문 조회
-    @Query(value = "SELECT * FROM orders WHERE member_id = " +
-            "(SELECT id FROM member WHERE phone_num = :PhoneNum);", nativeQuery = true)
+    @Query(value = "SELECT * FROM orders WHERE user_id = " +
+            "(SELECT id FROM user WHERE phone_num = :PhoneNum);", nativeQuery = true)
     List<Order> findByPhoneNum(@Param("PhoneNum")String PhoneNum);
 
     //지점 별 주문 조회

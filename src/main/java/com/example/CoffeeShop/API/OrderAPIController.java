@@ -35,9 +35,9 @@ public class OrderAPIController {
     }
 
     //주문 생성
-    @PostMapping("/api/orders/{memberId}/{storeId}")
-    public ResponseEntity<OrderDto> create(@PathVariable Long memberId, @PathVariable Long storeId, @RequestBody OrderDto dto) {
-        OrderDto createdDto = orderService.create(memberId, storeId, dto);
+    @PostMapping("/api/orders/{userId}/{storeId}")
+    public ResponseEntity<OrderDto> create(@PathVariable Long userId, @PathVariable Long storeId, @RequestBody OrderDto dto) {
+        OrderDto createdDto = orderService.create(userId, storeId, dto);
 
         return ResponseEntity.status(HttpStatus.OK).body(createdDto);
     }
