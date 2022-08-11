@@ -1,6 +1,7 @@
 package com.example.CoffeeShop.Controller;
 
 import com.example.CoffeeShop.config.auth.DTO.SessionUser;
+import com.example.CoffeeShop.config.auth.LoginUser;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -18,8 +19,7 @@ public class MainController {
 
     //메인 페이지
     @GetMapping("/")
-    public String main(Model model) {
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+    public String main(Model model, @LoginUser SessionUser user) {
         if (user != null) {
             model.addAttribute("userName", user.getName());
         }
