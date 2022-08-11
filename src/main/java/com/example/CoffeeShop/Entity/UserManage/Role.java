@@ -1,4 +1,4 @@
-package com.example.CoffeeShop.Entity.MemberManage;
+package com.example.CoffeeShop.Entity.UserManage;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

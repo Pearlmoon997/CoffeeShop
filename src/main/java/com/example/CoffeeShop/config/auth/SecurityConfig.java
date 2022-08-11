@@ -1,6 +1,5 @@
 package com.example.CoffeeShop.config.auth;
 
-import com.example.CoffeeShop.Entity.MemberManage.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;

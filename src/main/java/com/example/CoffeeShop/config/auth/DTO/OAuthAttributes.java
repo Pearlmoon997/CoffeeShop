@@ -1,9 +1,7 @@
 package com.example.CoffeeShop.config.auth.DTO;
 
-import com.example.CoffeeShop.Entity.MemberManage.Role;
+import com.example.CoffeeShop.Entity.UserManage.Role;
 import com.example.CoffeeShop.Entity.User;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import jdk.nashorn.internal.parser.JSONParser;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -16,17 +14,17 @@ public class OAuthAttributes {
     private Map<String, Object> attributes;
     private String nameAttributeKey;
     private String name;
-    private String email;
-    private String age;
+    private String token;
+    private String birth;
     private String phoneNum;
 
     @Builder
-    public OAuthAttributes(Map<String, Object> attributes, String nameAttributeKey, String name, String email, String age, String phoneNum) {
+    public OAuthAttributes(Map<String, Object> attributes, String nameAttributeKey, String name, String token, String birth, String phoneNum) {
         this.attributes = attributes;
         this.nameAttributeKey = nameAttributeKey;
         this.name = name;
-        this.email = email;
-        this.age = age;
+        this.token = token;
+        this.birth = birth;
         this.phoneNum = phoneNum;
     }
 
@@ -44,8 +42,8 @@ public class OAuthAttributes {
 
         return OAuthAttributes.builder()
                 .name((String) attributes.get("name"))
-                .email((String) attributes.get("email"))
-                .age((String) attributes.get("age"))
+                .token((String) attributes.get("email"))
+                .birth((String) attributes.get("age"))
                 .attributes(attributes)
                 .nameAttributeKey(userNameAttributeName)
                 .build();
@@ -59,9 +57,9 @@ public class OAuthAttributes {
 
         return OAuthAttributes.builder()
                 .name((String) response.get("name"))
-                .email((String) response.get("id"))
+                .token((String) response.get("id"))
                 .phoneNum((String) response.get("mobile"))
-                .age((String) response.get("birthyear"))
+                .birth((String) response.get("birthyear"))
                 .attributes(response)
                 .nameAttributeKey(userNameAttributeName)
                 .build();
@@ -70,9 +68,9 @@ public class OAuthAttributes {
     public User toEntity() {
         return User.builder()
                 .name(name)
-                .email(email)
+                .token(token)
                 .phoneNum(phoneNum)
-                .age(age)
+                .birth(birth)
                 .role(Role.GUEST)
                 .build();
     }

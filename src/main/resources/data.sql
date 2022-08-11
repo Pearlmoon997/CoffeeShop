@@ -6,9 +6,9 @@ INSERT INTO product(id, name, price, category) VALUES (4, '아이스티', 3800, 
 INSERT INTO product(id, name, price, category) VALUES (5, '우유', 2000, 'Non 커피');
 
 --user 더미데이터
-INSERT INTO user(id, email, name, age, phone_num) VALUES (1,'aaa', '김일번', '1982', '010-1234-5678');
-INSERT INTO user(id, email, name, age, phone_num) VALUES (2, 'bbb', '문이번', '1994', '010-4321-8765');
-INSERT INTO user(id, email, name, age, phone_num) VALUES (3, 'ccc', '박삼번', '1990', '010-5678-1234');
+INSERT INTO user(id, token, name, birth, phone_num) VALUES (1,'aaa', '김일번', '1982', '010-1234-5678');
+INSERT INTO user(id, token, name, birth, phone_num) VALUES (2, 'bbb', '문이번', '1994', '010-4321-8765');
+INSERT INTO user(id, token, name, birth, phone_num) VALUES (3, 'ccc', '박삼번', '1990', '010-5678-1234');
 
 --Store 더미데이터
 INSERT INTO store(id, name, location) VALUES (1, '기흥점', '용인');

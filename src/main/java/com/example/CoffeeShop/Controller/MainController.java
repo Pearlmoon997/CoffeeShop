@@ -23,7 +23,7 @@ public class MainController {
             model.addAttribute("userName", user.getName());
         }
         if (user != null) {
-            model.addAttribute("userEmail", user.getEmail());
+            model.addAttribute("userToken", user.getToken());
         }
 
         return "coffeeShop/main";
@@ -34,12 +34,6 @@ public class MainController {
     public String login() {
 
         return "coffeeShop/login";
-    }
-
-    //회원가입 페이지
-    @GetMapping("/signUp")
-    public String signUp() {
-        return "coffeeShop/signUp";
     }
 
     //베스트 상품 페이지

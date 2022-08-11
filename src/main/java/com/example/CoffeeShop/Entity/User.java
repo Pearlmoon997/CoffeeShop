@@ -1,6 +1,6 @@
 package com.example.CoffeeShop.Entity;
 
-import com.example.CoffeeShop.Entity.MemberManage.Role;
+import com.example.CoffeeShop.Entity.UserManage.Role;
 import lombok.*;
 
 
@@ -19,13 +19,13 @@ public class User {
     private Long id;
 
     @Column
-    private String email;        //네이버 토큰 값 ID
+    private String token;        //네이버 토큰 값 ID
 
     @Column
     private String name;
 
     @Column
-    private String age;
+    private String birth;
 
     @Column
     private String phoneNum;
@@ -36,14 +36,14 @@ public class User {
     private Role role;
 
     public void patch(User user) {
-        if (user.email != null) {
-            this.email = user.email;
+        if (user.token != null) {
+            this.token = user.token;
         }
         if (user.name != null) {
             this.name = user.name;
         }
-        if (user.age != null) {
-            this.age = user.age;
+        if (user.birth != null) {
+            this.birth = user.birth;
         }
         if (user.phoneNum != null) {
             this.phoneNum = user.phoneNum;
