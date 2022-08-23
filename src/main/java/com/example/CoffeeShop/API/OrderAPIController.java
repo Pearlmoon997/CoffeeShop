@@ -28,16 +28,11 @@ public class OrderAPIController {
         return orderService.findByPhoneNum(PhoneNum);
     }
 
-    //지점 별 주문 조회
-    @GetMapping("/api/orders/store/{StoreName}")
-    public List<Order> listByStoreName(@PathVariable String StoreName) {
-        return orderService.listByStoreName(StoreName);
-    }
 
     //주문 생성
-    @PostMapping("/api/orders/{userId}/{storeId}")
-    public ResponseEntity<OrderDto> create(@PathVariable Long userId, @PathVariable Long storeId, @RequestBody OrderDto dto) {
-        OrderDto createdDto = orderService.create(userId, storeId, dto);
+    @PostMapping("/api/orders/{userId}")
+    public ResponseEntity<OrderDto> create(@PathVariable Long userId, @RequestBody OrderDto dto) {
+        OrderDto createdDto = orderService.create(userId, dto);
 
         return ResponseEntity.status(HttpStatus.OK).body(createdDto);
     }

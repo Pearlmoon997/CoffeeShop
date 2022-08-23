@@ -1,3 +1,54 @@
 {{>layouts/header}}
 
-여기는 전체 상품 페이지
+{{#userId}}
+{{#products}}
+    <div class="row row-cols-1 row-cols-md-3 g-4" style="margin: 0 auto">
+        <div class="col">
+            <div class="card">
+                <img src="images/coffee.png" class="card-img-top">
+                <div class="card-body">
+                    <input type="hidden" id="id" value="{{id}}">
+                    <h5 class="card-title" id="name">{{name}}</h5>
+                    <p class="card-text">{{price}} 원</p>
+                    <button class="btn btn-outline-secondary" id="order-btn" productId="{{id}}"
+                    userId="{{userId}}">주문하기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{{/products}}
+{{/userId}}
+
+<script>
+
+    const orderBtns = document.querySelectorAll("#order-btn");
+
+    orderBtns.forEach(btn => {
+        btn.addEventListener("click", (event) => {
+            const orderBtn = event.srcElement;
+
+            const userId= orderBtn.getAttribute("userId");
+
+            const orderProduct = {
+                productId: orderBtn.getAttribute("productId"),
+            };
+
+            console.log(userId);
+            console.log(orderProduct);
+
+            const url = `/api/orders/${userId}`
+            fetch(url, {
+                method: "POST",
+                body: JSON.stringify(orderBtn),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+
+        });
+
+    });
+</script>
+
+
+

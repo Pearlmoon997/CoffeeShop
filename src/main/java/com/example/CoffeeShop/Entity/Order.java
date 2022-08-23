@@ -27,15 +27,12 @@ public class Order extends BaseTimeEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "store_id")
-    private Store store;
 
     @CreatedDate
     @Column
     private LocalDateTime orderDate;
 
-    public static Order createOrder(OrderDto dto, User user, Store store) {
+    public static Order createOrder(OrderDto dto, User user) {
         if (dto.getId() != null) {
             throw new IllegalArgumentException("생성 실패, 주문에는 ID가 없어야 함.");
         }
@@ -45,7 +42,6 @@ public class Order extends BaseTimeEntity {
         return new Order(
                 dto.getId(),
                 user,
-                store,
                 dto.getOrderDate()
         );
     }

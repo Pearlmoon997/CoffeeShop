@@ -3,11 +3,9 @@ package com.example.CoffeeShop.Service;
 import com.example.CoffeeShop.DTO.OrderDto;
 import com.example.CoffeeShop.Entity.User;
 import com.example.CoffeeShop.Entity.Order;
-import com.example.CoffeeShop.Entity.Store;
 import com.example.CoffeeShop.Repository.UserRepository;
 import com.example.CoffeeShop.Repository.OrderProductRepository;
 import com.example.CoffeeShop.Repository.OrderRepository;
-import com.example.CoffeeShop.Repository.StoreRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,8 +26,6 @@ public class OrderService {
     @Autowired
     private OrderProductRepository orderProductRepository;
 
-    @Autowired
-    private StoreRepository storeRepository;
 
     //전체 주문 조회
     public List<Order> list() {
@@ -41,21 +37,14 @@ public class OrderService {
         return orderRepository.findByPhoneNum(PhoneNum);
     }
 
-    //지점 별 주문 조회
-    public List<Order> listByStoreName(String StoreName) {
-        return orderRepository.listByStoreName(StoreName);
-    }
 
     //주문 생성
     @Transactional
-    public OrderDto create(Long userId, Long storeId, OrderDto dto) {
+    public OrderDto create(Long userId, OrderDto dto) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("생성 실패, 대상 회원이 없음"));
 
-        Store store = storeRepository.findById(storeId)
-                .orElseThrow(() -> new IllegalArgumentException("생성 실패, 대상 지점이 없음"));
-
-        Order order = Order.createOrder(dto, user, store);
+        Order order = Order.createOrder(dto, user);
 
         Order created = orderRepository.save(order);
 

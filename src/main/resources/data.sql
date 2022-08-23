@@ -10,15 +10,10 @@ INSERT INTO user(id, token, name, birth, phone_num) VALUES (1,'aaa', '김일번'
 INSERT INTO user(id, token, name, birth, phone_num) VALUES (2, 'bbb', '문이번', '1994', '010-4321-8765');
 INSERT INTO user(id, token, name, birth, phone_num) VALUES (3, 'ccc', '박삼번', '1990', '010-5678-1234');
 
---Store 더미데이터
-INSERT INTO store(id, name, location) VALUES (1, '기흥점', '용인');
-INSERT INTO store(id, name, location) VALUES (2, '둔전점', '용인');
-INSERT INTO store(id, name, location) VALUES (3, '강남점', '서울');
-
 --order 더미데이터
-INSERT INTO orders(id, user_id, store_id, order_date) VALUES (1, 1, 1, current_timestamp);
-INSERT INTO orders(id, user_id, store_id, order_date) VALUES (2, 2, 2, current_timestamp);
-INSERT INTO orders(id, user_id, store_id, order_date) VALUES (3, 3, 3, current_timestamp);
+INSERT INTO orders(id, user_id, order_date) VALUES (1, 1, current_timestamp);
+INSERT INTO orders(id, user_id, order_date) VALUES (2, 2, current_timestamp);
+INSERT INTO orders(id, user_id, order_date) VALUES (3, 3, current_timestamp);
 
 --orderProduct 더미데이터
 INSERT INTO order_product(id, order_id, product_id, total) VALUES (1, 1, 1, 4000);
