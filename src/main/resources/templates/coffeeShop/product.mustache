@@ -1,14 +1,17 @@
+<!-- 로그인 여부 상관없이 header 출력 -->
 {{#userName}}
 {{>layouts/header}}
 {{/userName}}
-
 {{^userName}}
     {{>layouts/header}}
 {{/userName}}
 
+<!-- 로그인 안했으면 로그인하라는 버튼 -->
 {{^userId}}
     <button class="btn btn-outline-danger  btn-lg m-5"><a href="signIn" style="color: black; text-decoration-line: none">로그인 후 이용해주세요</a></button>
 {{/userId}}
+
+<!-- 로그인 확인 후 출력 부분 -->
 {{#userId}}
 {{#products}}
     <div class="row row-cols-1 row-cols-md-3 g-4" style="margin: 0 auto">
@@ -28,9 +31,6 @@
     </div>
 {{/products}}
 {{/userId}}
-
-
-
 
 <script>
     const orderBtns = document.querySelectorAll("#order-btn");
@@ -59,23 +59,6 @@
                 alert(msg);
 
             });
-
-            // const orderProduct = {
-            //     productId: orderBtn.getAttribute("productId"),
-            //     price: orderBtn.getAttribute("total"),
-            //     orderId: document.querySelector("#orderId")
-            // };
-            //
-            // console.log(orderProduct);
-            //
-            // const url2 = `/api/orderproducts/ ${orderProduct.orderId} /${orderProduct.productId}`
-            // fetch(url2, {
-            //     method: "POST",
-            //     body: JSON.stringify(orderProduct),
-            //     headers: {
-            //         "Content-Type": "application/json"
-            //     }
-            // });
         });
     });
 </script>
