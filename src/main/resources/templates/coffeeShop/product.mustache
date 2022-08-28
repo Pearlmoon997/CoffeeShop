@@ -1,5 +1,14 @@
+{{#userName}}
 {{>layouts/header}}
+{{/userName}}
 
+{{^userName}}
+    {{>layouts/header}}
+{{/userName}}
+
+{{^userId}}
+    <button class="btn btn-outline-danger  btn-lg m-5"><a href="signIn" style="color: black; text-decoration-line: none">로그인 후 이용해주세요</a></button>
+{{/userId}}
 {{#userId}}
 {{#products}}
     <div class="row row-cols-1 row-cols-md-3 g-4" style="margin: 0 auto">
@@ -10,8 +19,9 @@
                     <input type="hidden" id="id" value="{{id}}">
                     <h5 class="card-title" id="name">{{name}}</h5>
                     <p class="card-text">{{price}} 원</p>
+
                     <button class="btn btn-outline-secondary" id="order-btn" productId="{{id}}"
-                    userId="{{userId}}">주문하기</button>
+                    userId="{{userId}}" total="{{price}}">주문하기</button>
                 </div>
             </div>
         </div>
@@ -19,36 +29,57 @@
 {{/products}}
 {{/userId}}
 
-<script>
 
+
+
+<script>
     const orderBtns = document.querySelectorAll("#order-btn");
 
     orderBtns.forEach(btn => {
         btn.addEventListener("click", (event) => {
             const orderBtn = event.srcElement;
 
-            const userId= orderBtn.getAttribute("userId");
+           const order = {
+               userId: orderBtn.getAttribute("userId"),
+               productId: orderBtn.getAttribute("productId"),
+               total: orderBtn.getAttribute("total")
+           }
 
-            const orderProduct = {
-                productId: orderBtn.getAttribute("productId"),
-            };
+           console.log(order);
 
-            console.log(userId);
-            console.log(orderProduct);
-
-            const url = `/api/orders/${userId}`
+            const url = `/order/product`
             fetch(url, {
                 method: "POST",
-                body: JSON.stringify(orderBtn),
+                body: JSON.stringify(order),
                 headers: {
                     "Content-Type": "application/json"
                 }
+            }).then(response => {
+                const msg = (response.ok) ? "주문 완료" : "주문 실패";
+                alert(msg);
+
             });
 
+            // const orderProduct = {
+            //     productId: orderBtn.getAttribute("productId"),
+            //     price: orderBtn.getAttribute("total"),
+            //     orderId: document.querySelector("#orderId")
+            // };
+            //
+            // console.log(orderProduct);
+            //
+            // const url2 = `/api/orderproducts/ ${orderProduct.orderId} /${orderProduct.productId}`
+            // fetch(url2, {
+            //     method: "POST",
+            //     body: JSON.stringify(orderProduct),
+            //     headers: {
+            //         "Content-Type": "application/json"
+            //     }
+            // });
         });
-
     });
 </script>
+
 
 
 

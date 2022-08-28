@@ -1,7 +1,12 @@
 package com.example.CoffeeShop.Controller;
 
+import com.example.CoffeeShop.DTO.OrderDto;
+import com.example.CoffeeShop.DTO.OrderProductDto;
+import com.example.CoffeeShop.DTO.ProductDto;
 import com.example.CoffeeShop.Entity.Order;
+import com.example.CoffeeShop.Entity.OrderProduct;
 import com.example.CoffeeShop.Entity.Product;
+import com.example.CoffeeShop.Repository.OrderRepository;
 import com.example.CoffeeShop.Service.OrderProductService;
 import com.example.CoffeeShop.Service.OrderService;
 import com.example.CoffeeShop.Service.ProductService;
@@ -10,13 +15,20 @@ import com.example.CoffeeShop.config.auth.LoginUser;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import java.lang.reflect.Member;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -29,6 +41,11 @@ public class MainController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private OrderProductService orderProductService;
+
+
 
     //메인 페이지
     @GetMapping("/")
@@ -58,13 +75,31 @@ public class MainController {
     public String product(Model model, @LoginUser SessionUser user) {    //모델 등록
         List<Product> products = productService.list();
         model.addAttribute("products", products);
-        List<Order> order = orderService.list();
-        model.addAttribute("order", order);
+
+        //올바른 User ID 인지 확인
         if (user != null) {
             model.addAttribute("userId", user.getId());
+            model.addAttribute("userName", user.getName());
         }
+
         return "coffeeShop/product";
     }
 
+    @PostMapping("/order/product")
+    public ResponseEntity<OrderDto> create(@LoginUser SessionUser user, @RequestBody Map<String, Long> map, OrderDto dto,
+                                           OrderProductDto orderDto) {
+
+        // JSON 데이터 잘 매핑됐는지 확인
+        log.info("map ->" + map);
+
+        //Order 테이블 Insert
+        OrderDto createdDto = orderService.create(user.getId(), dto);
+
+        //Order_product 테이블 Insert
+        OrderProductDto createdDto2 = orderProductService.create(createdDto.getId(), map.get("productId"), orderDto);
+        log.info("orderProduct -> " + createdDto2);
+
+        return ResponseEntity.status(HttpStatus.OK).body(createdDto);
+    }
 
 }

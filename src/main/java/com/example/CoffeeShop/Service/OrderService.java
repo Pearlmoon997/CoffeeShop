@@ -37,7 +37,9 @@ public class OrderService {
         return orderRepository.findByPhoneNum(PhoneNum);
     }
 
-
+    public List<Order> findByName(String Name) {
+        return orderRepository.findByName(Name);
+    }
     //주문 생성
     @Transactional
     public OrderDto create(Long userId, OrderDto dto) {
