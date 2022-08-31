@@ -1,6 +1,7 @@
 package com.example.CoffeeShop.Entity;
 
 import com.example.CoffeeShop.DTO.OrderProductDto;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,7 @@ public class OrderProduct {
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE) //cascade 옵션 -> OnDelete 옵션은 cascade = CascadeTYPE의 모든 조건을 충족!
     @JoinColumn(name = "order_id")
+    @JsonIgnore //양방향 매핑이라 조회 떄 문제생김 -> 임시방편
     private Order order;
 
     @ManyToOne

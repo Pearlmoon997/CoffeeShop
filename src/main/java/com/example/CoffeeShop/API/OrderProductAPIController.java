@@ -23,6 +23,11 @@ public class OrderProductAPIController {
         return orderProductService.list();
     }
 
+    @GetMapping("/api/orderproducts/{userId}")
+    public List<OrderProduct> listByOrderId(@PathVariable Long userId){
+        return orderProductService.listByOrderId(userId);
+    }
+
     //order_product 등록
     @PostMapping("/api/orderproducts/{orderId}/{productId}")
     public ResponseEntity<OrderProductDto> create(@PathVariable Long orderId, @PathVariable Long productId,

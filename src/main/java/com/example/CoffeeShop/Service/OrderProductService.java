@@ -33,6 +33,10 @@ public class OrderProductService {
         return orderProductRepository.findAll();
     }
 
+    public List<OrderProduct> listByOrderId(Long userId) {
+        return orderProductRepository.listByOrderId(userId);
+    }
+
     //주문 등록
     @Transactional
     public OrderProductDto create(Long OrderId, Long ProductId, OrderProductDto dto) {
@@ -60,6 +64,5 @@ public class OrderProductService {
 
         return target;
     }
-
 
 }

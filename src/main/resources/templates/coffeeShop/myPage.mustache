@@ -1,0 +1,71 @@
+{{#userName}}
+{{>layouts/header}}
+{{/userName}}
+
+{{#user}}
+
+    이름: {{name}} <br>
+    <input type="hidden" id="phoneNum" value="{{phoneNum}}">전화번호: {{phoneNum}}
+{{/user}} <br><br>
+
+주문 내역 ----- <br>
+{{#order}}
+
+        주문 번호: {{id}} <br>
+        주문 일시: {{orderDate}} <br>
+        {{#orderP}}
+        주문 상품: {{product.name}} <br>
+        가격: {{total}} <br>
+
+        <button class="btn btn-outline-danger" id="order-cancel" orderProductId="{{id}}" orderId="{{order.id}}">주문 취소</button>
+        {{/orderP}}
+{{/order}}
+
+{{^order}}
+    주문한 내역이 없음.
+{{/order}}
+
+<script>
+    const orderCancel = document.querySelector("#order-cancel");
+
+    orderCancel.addEventListener("click", () => {
+        const orderProductId = orderCancel.getAttribute("orderProductId");
+        const orderId = orderCancel.getAttribute("orderId");
+        console.log(`삭제 번허: ${orderProductId}`);
+        console.log(`주문 번호: ${orderId}`);
+
+        const url = `/api/orders/${orderId}`
+        fetch(url, {
+            method: "DELETE"
+        }).then(response => {
+            const msg = (response.ok) ? "주문 삭제 완료" : "주문 삭제 실패";
+            alert(msg);
+
+            window.location.reload();
+        })
+    })
+</script>
+
+
+
+
+<!-- JSON으로 받아온 데이터 화면에 출력하는 방법 -->
+<!--<script>-->
+<!--    const phoneNum = document.querySelector("#phoneNum").value;-->
+
+<!--    console.log(phoneNum);-->
+
+<!--    const url = `/api/orders/${phoneNum}`-->
+
+<!--    fetch(url).then(res => res.json())-->
+<!--                .then(res => {-->
+<!--                    const id = document.createElement("div");-->
+<!--                    const Date = document.createElement("div");-->
+<!--                    id.textContent = res.map((order) => order.id);-->
+<!--                    Date.textContent = res.map((order) => order.orderDate);-->
+<!--                    const orderId = document.getElementById("orderId");-->
+<!--                    const orderDate = document.getElementById("orderDate");-->
+<!--                    orderId.appendChild(id);-->
+<!--                    orderDate.appendChild(Date);-->
+<!--                });-->
+<!--</script>-->

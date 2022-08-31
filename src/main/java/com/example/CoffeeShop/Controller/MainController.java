@@ -85,6 +85,7 @@ public class MainController {
         return "coffeeShop/product";
     }
 
+    //주문하기
     @PostMapping("/order/product")
     public ResponseEntity<OrderDto> create(@LoginUser SessionUser user, @RequestBody Map<String, Long> map, OrderDto dto,
                                            OrderProductDto orderDto) {
@@ -100,6 +101,24 @@ public class MainController {
         log.info("orderProduct -> " + createdDto2);
 
         return ResponseEntity.status(HttpStatus.OK).body(createdDto);
+    }
+
+    //마이 페이지
+    @GetMapping("/myPage")
+    public String myPage(@LoginUser SessionUser user, Model model) throws Exception{
+        if (user != null) {
+            model.addAttribute("user", user);
+            model.addAttribute("userName", user.getName());
+        }
+
+        List<Order> orderProducts = orderService.findByPhoneNum(user.getPhoneNum());
+        model.addAttribute("order", orderProducts);
+
+        List<OrderProduct> orderProducts2 = orderProductService.listByOrderId(user.getId());
+        model.addAttribute("orderP", orderProducts2);
+
+
+        return "coffeeShop/myPage";
     }
 
 }
