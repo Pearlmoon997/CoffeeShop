@@ -63,7 +63,7 @@
                             <label class="form-label">상품 이름</label>
                             <input class="form-control form-control-sm" id="productName" readonly>
                         </div>
-                        <!-- 댓글 본문 입력 -->
+                        <!-- 상품 가격 -->
                         <div class="mb-3">
                             <label class="form-label">상품 가격</label>
                             <input class="form-control form-control-sm" id="productPrice" readonly>
@@ -85,9 +85,9 @@
 <script>
 {
     //모달 버튼 변수화
-    const commentEditModal = document.querySelectorAll("#pay-modal");
+    const payModal = document.querySelectorAll("#pay-modal");
     //모달 이벤트
-    commentEditModal.forEach(btn => {
+    payModal.forEach(btn => {
         btn.addEventListener("show.bs.modal", (event) => {
             //트리거 버튼 선택
             const triggerBtn = event.relatedTarget;
